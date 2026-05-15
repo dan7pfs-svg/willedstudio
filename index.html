@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WILLE D. Studio — Objetos de Autor · Macetas & Vida Interior</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Miao&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crema:       #EAE3D6;
+    --crema-oscura:#D6CBBA;
+    --terracota:   #C4703A;
+    --terracota-claro: #D4845A;
+    --azul:        #4A6177;
+    --azul-claro:  #6A8197;
+    --mostaza:     #C9A84C;
+    --gris-sage:   #9AA5A8;
+    --blanco:      #FAF8F4;
+    --negro-suave: #1E1A16;
+    --texto:       #2C2520;
+    --texto-medio: #6B5E54;
+    --texto-claro: #9A8E85;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--crema);
+    color: var(--texto);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── LOGO SVG (dibujado en código basado en la marca) ─── */
+  .wille-mark {
+    display: inline-block;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(234, 227, 214, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,112,58,0.12);
+    transition: all 0.3s;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-wordmark {
+    font-family: 'Noto Sans Miao', 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--texto);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-wordmark span { color: var(--terracota); }
+
+  .nav-sub {
+    font-size: 10px;
+    color: var(--texto-claro);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--texto-medio);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.25s;
+  }
+
+  .nav-links a:hover { color: var(--terracota); }
+
+  .nav-cta {
+    background: var(--terracota) !important;
+    color: var(--blanco) !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+    font-weight: 500 !important;
+  }
+
+  .nav-cta:hover { background: var(--terracota-claro) !important; color: var(--blanco) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px 80px 80px;
+    position: relative;
+  }
+
+  .hero-right {
+    background: var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 60%, rgba(196,112,58,0.18) 0%, transparent 60%);
+  }
+
+  .hero-right-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 60px;
+  }
+
+  /* Logo mark SVG */
+  .logo-grande {
+    width: 220px;
+    height: 220px;
+    opacity: 0.9;
+  }
+
+  .hero-tagline-right {
+    margin-top: 32px;
+    font-size: 13px;
+    color: rgba(234,227,214,0.6);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--terracota);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .hero-titulo {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(48px, 5.5vw, 80px);
+    line-height: 1.05;
+    color: var(--texto);
+    margin-bottom: 28px;
+  }
+
+  .hero-titulo em {
+    font-style: italic;
+    color: var(--terracota);
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--texto-medio);
+    max-width: 420px;
+    margin-bottom: 48px;
+  }
+
+  .hero-botones {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-principal {
+    background: var(--terracota);
+    color: var(--blanco);
+    padding: 14px 32px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    transition: all 0.3s;
+    border: 1.5px solid var(--terracota);
+  }
+
+  .btn-principal:hover {
+    background: transparent;
+    color: var(--terracota);
+  }
+
+  .btn-secundario {
+    color: var(--texto-medio);
+    padding: 14px 28px;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    border: 1.5px solid var(--crema-oscura);
+    transition: all 0.3s;
+  }
+
+  .btn-secundario:hover {
+    border-color: var(--terracota);
+    color: var(--terracota);
+  }
+
+  .hero-datos {
+    display: flex;
+    gap: 40px;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--crema-oscura);
+  }
+
+  .dato {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .dato-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--terracota);
+  }
+
+  .dato-label {
+    font-size: 11px;
+    color: var(--texto-claro);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ─── BANDA FILOSOFÍA ─── */
+  .banda {
+    background: var(--azul);
+    padding: 40px 80px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    overflow: hidden;
+  }
+
+  .banda-texto {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: rgba(234,227,214,0.85);
+    white-space: nowrap;
+    animation: banda-scroll 30s linear infinite;
+  }
+
+  .banda-sep {
+    color: var(--terracota);
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  @keyframes banda-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .banda-inner {
+    display: flex;
+    gap: 60px;
+    animation: banda-scroll 40s linear infinite;
+    white-space: nowrap;
+  }
+
+  .banda-item {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: rgba(234,227,214,0.7);
+    flex-shrink: 0;
+  }
+
+  .banda-dot {
+    color: var(--terracota);
+    margin: 0 20px;
+  }
+
+  /* ─── MANIFIESTO ─── */
+  .manifiesto {
+    padding: 120px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .manifiesto-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(26px, 2.8vw, 40px);
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--texto);
+    padding-left: 28px;
+    border-left: 3px solid var(--terracota);
+  }
+
+  .manifiesto-quote strong {
+    font-style: normal;
+    color: var(--terracota);
+  }
+
+  .manifiesto-texto { display: flex; flex-direction: column; gap: 20px; }
+
+  .etiqueta {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--terracota);
+    font-weight: 500;
+  }
+
+  .manifiesto-cuerpo {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--texto-medio);
+  }
+
+  .manifiesto-cuerpo p + p { margin-top: 14px; }
+
+  /* ─── COLECCIÓN ─── */
+  .coleccion {
+    padding: 100px 80px;
+    background: var(--blanco);
+  }
+
+  .sec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+  }
+
+  .sec-titulo {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 4vw, 60px);
+    line-height: 1;
+    color: var(--texto);
+  }
+
+  .sec-titulo em {
+    font-style: italic;
+    color: var(--terracota);
+  }
+
+  .sec-meta {
+    font-size: 12px;
+    color: var(--texto-claro);
+    letter-spacing: 0.15em;
+    text-align: right;
+    line-height: 1.8;
+    text-transform: uppercase;
+  }
+
+  .grid-productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .card-producto {
+    background: var(--crema);
+    overflow: hidden;
+    transition: transform 0.35s, box-shadow 0.35s;
+    cursor: pointer;
+  }
+
+  .card-producto:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(44,37,32,0.12);
+  }
+
+  .card-imagen {
+    aspect-ratio: 4/3;
+    background: var(--azul);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-imagen-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .card-imagen-placeholder svg { opacity: 0.4; }
+
+  .card-imagen-placeholder span {
+    font-size: 10px;
+    color: rgba(234,227,214,0.5);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .card-imagen img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .card-producto:hover .card-imagen img { transform: scale(1.06); }
+
+  .card-badge {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: var(--terracota);
+    color: var(--blanco);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    font-weight: 500;
+  }
+
+  .card-cuerpo {
+    padding: 28px 28px 32px;
+  }
+
+  .card-linea {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--terracota);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .card-nombre {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--texto);
+    margin-bottom: 12px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--texto-medio);
+    margin-bottom: 24px;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--crema-oscura);
+  }
+
+  .card-precio {
+    font-size: 13px;
+    color: var(--texto-claro);
+    letter-spacing: 0.1em;
+  }
+
+  .card-pedir {
+    font-size: 12px;
+    color: var(--terracota);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    padding-bottom: 1px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s;
+  }
+
+  .card-pedir:hover { border-color: var(--terracota); }
+
+  /* ─── ARMADOR DE KIT ─── */
+  .armador {
+    padding: 120px 80px;
+    background: var(--negro-suave);
+  }
+
+  .armador-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .armador-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .armador-titulo {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    color: var(--crema);
+    margin-bottom: 16px;
+  }
+
+  .armador-titulo em {
+    font-style: italic;
+    color: var(--terracota);
+  }
+
+  .armador-sub {
+    font-size: 16px;
+    color: var(--gris-sage);
+    line-height: 1.7;
+  }
+
+  .kit-pasos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 48px;
+  }
+
+  .kit-paso {
+    background: #2A2420;
+    padding: 40px 32px;
+    position: relative;
+  }
+
+  .kit-paso.activo {
+    background: #352E28;
+    border-top: 2px solid var(--terracota);
+  }
+
+  .paso-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px;
+    color: rgba(196,112,58,0.25);
+    margin-bottom: 8px;
+  }
+
+  .paso-activo .paso-num { color: var(--terracota); }
+
+  .paso-titulo {
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gris-sage);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .kit-paso.activo .paso-titulo { color: var(--crema); }
+
+  .opciones-kit {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .opcion-kit {
+    background: rgba(234,227,214,0.05);
+    border: 1px solid rgba(234,227,214,0.08);
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--gris-sage);
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .opcion-kit:hover, .opcion-kit.seleccionada {
+    background: rgba(196,112,58,0.15);
+    border-color: var(--terracota);
+    color: var(--crema);
+  }
+
+  .opcion-kit .check {
+    width: 16px; height: 16px;
+    border: 1px solid rgba(234,227,214,0.2);
+    border-radius: 50%;
+    transition: all 0.25s;
+    flex-shrink: 0;
+  }
+
+  .opcion-kit.seleccionada .check {
+    background: var(--terracota);
+    border-color: var(--terracota);
+  }
+
+  .kit-resumen {
+    background: #2A2420;
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .resumen-texto {
+    font-size: 15px;
+    color: var(--gris-sage);
+    line-height: 1.6;
+  }
+
+  .resumen-texto strong {
+    color: var(--crema);
+    display: block;
+    font-size: 18px;
+    margin-bottom: 4px;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+  }
+
+  .resumen-precio {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--terracota);
+    white-space: nowrap;
+  }
+
+  .btn-kit {
+    background: var(--terracota);
+    color: var(--blanco);
+    padding: 14px 32px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    transition: all 0.3s;
+    white-space: nowrap;
+    border: 1.5px solid var(--terracota);
+  }
+
+  .btn-kit:hover { background: transparent; color: var(--terracota); }
+
+  /* ─── SISTEMA WICK ─── */
+  .sistema {
+    padding: 120px 80px;
+    background: var(--crema);
+  }
+
+  .sistema-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .formula-item {
+    background: var(--azul);
+    padding: 32px 24px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .formula-item:hover { background: var(--azul-claro); }
+
+  .formula-pct {
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px;
+    color: var(--crema);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .formula-nombre {
+    font-size: 12px;
+    color: rgba(234,227,214,0.65);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .formula-nota {
+    background: var(--terracota);
+    padding: 20px 28px;
+    font-size: 13px;
+    color: var(--blanco);
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .sistema-pasos {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sistema-paso {
+    display: flex;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--crema-oscura);
+    align-items: flex-start;
+  }
+
+  .sistema-paso:last-child { border-bottom: none; }
+
+  .paso-ico {
+    width: 36px; height: 36px;
+    background: var(--terracota);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--blanco);
+  }
+
+  .paso-info h4 {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--texto);
+    margin-bottom: 4px;
+  }
+
+  .paso-info p {
+    font-size: 14px;
+    color: var(--texto-medio);
+    line-height: 1.6;
+  }
+
+  /* ─── PLANTAS ─── */
+  .plantas {
+    padding: 100px 80px;
+    background: var(--blanco);
+  }
+
+  .plantas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 64px;
+  }
+
+  .planta-card {
+    background: var(--crema);
+    padding: 28px 24px;
+    border-top: 2px solid transparent;
+    transition: all 0.3s;
+  }
+
+  .planta-card:hover {
+    border-color: var(--terracota);
+    background: var(--blanco);
+  }
+
+  .planta-nombre { font-size: 18px; font-weight: 500; color: var(--texto); margin-bottom: 4px; }
+  .planta-cientifico { font-size: 13px; font-style: italic; color: var(--texto-claro); margin-bottom: 14px; }
+
+  .planta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--azul);
+    border: 1px solid rgba(74,97,119,0.3);
+    padding: 3px 10px;
+    text-transform: uppercase;
+  }
+
+  .tag.wick {
+    background: var(--terracota);
+    color: var(--blanco);
+    border-color: var(--terracota);
+  }
+
+  /* ─── CONTACTO ─── */
+  .contacto {
+    background: var(--azul);
+    padding: 120px 80px;
+  }
+
+  .contacto-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .contacto-titulo {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(44px, 5vw, 76px);
+    color: var(--crema);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .contacto-titulo em {
+    font-style: italic;
+    color: var(--terracota);
+    display: block;
+  }
+
+  .contacto-bajada {
+    font-size: 16px;
+    color: rgba(234,227,214,0.65);
+    line-height: 1.7;
+    max-width: 380px;
+  }
+
+  .contacto-items {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-top: 8px;
+  }
+
+  .contacto-item {
+    padding-left: 24px;
+    border-left: 2px solid rgba(196,112,58,0.4);
+    transition: border-color 0.3s;
+  }
+
+  .contacto-item:hover { border-color: var(--terracota); }
+
+  .c-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--terracota);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .c-valor {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--crema);
+    text-decoration: none;
+    transition: color 0.25s;
+    display: block;
+  }
+
+  .c-valor:hover { color: var(--terracota); }
+
+  .c-nota {
+    font-size: 13px;
+    color: rgba(234,227,214,0.5);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  .btn-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    background: var(--terracota);
+    color: var(--blanco);
+    padding: 14px 28px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    transition: all 0.3s;
+    border: 1.5px solid var(--terracota);
+  }
+
+  .btn-wa:hover { background: transparent; color: var(--terracota); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--negro-suave);
+    padding: 48px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-marca {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .footer-wordmark {
+    font-family: 'Noto Sans Miao', 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--crema);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-wordmark span { color: var(--terracota); }
+
+  .footer-sub {
+    font-size: 11px;
+    color: var(--texto-claro);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .footer-frase {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(234,227,214,0.4);
+    text-align: center;
+    max-width: 360px;
+    line-height: 1.6;
+  }
+
+  .footer-copy {
+    font-size: 11px;
+    color: var(--texto-claro);
+    letter-spacing: 0.12em;
+    text-align: right;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 40vh; }
+    .hero-left { padding: 60px 24px; }
+    .manifiesto, .sistema-inner, .contacto-inner { grid-template-columns: 1fr; gap: 48px; }
+    .manifiesto, .coleccion, .armador, .sistema, .plantas, .contacto { padding: 80px 24px; }
+    .grid-productos, .kit-pasos { grid-template-columns: 1fr; }
+    .plantas-grid { grid-template-columns: repeat(2, 1fr); }
+    .sec-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+    .footer-frase { display: none; }
+    .kit-resumen { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div>
+      <div class="nav-wordmark">WILLE <span>D.</span> Studio</div>
+      <div class="nav-sub">Objetos de Autor · Macetas & Vida Interior</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#coleccion">Colección</a></li>
+    <li><a href="#arma-tu-kit">Arma tu Kit</a></li>
+    <li><a href="#sistema">Sistema Wick</a></li>
+    <li><a href="#plantas">Plantas</a></li>
+    <li><a href="#contacto" class="nav-cta">Pedir ahora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Diseño Industrial de Autor · México</p>
+    <h1 class="hero-titulo">
+      Objetos que<br>
+      custodian<br>
+      <em>la vida.</em>
+    </h1>
+    <p class="hero-desc">
+      No fabricamos macetas. Fabricamos refugios. Ingeniería de precisión al servicio de la vida que crece adentro — cada pieza es un acto de voluntad.
+    </p>
+    <div class="hero-botones">
+      <a href="#coleccion" class="btn-principal">Ver Colección</a>
+      <a href="#arma-tu-kit" class="btn-secundario">Arma tu Kit →</a>
+    </div>
+    <div class="hero-datos">
+      <div class="dato">
+        <span class="dato-num">0.2mm</span>
+        <span class="dato-label">Tolerancia</span>
+      </div>
+      <div class="dato">
+        <span class="dato-num">3</span>
+        <span class="dato-label">Líneas de diseño</span>
+      </div>
+      <div class="dato">
+        <span class="dato-num">∞</span>
+        <span class="dato-label">Combinaciones</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-content">
+      <!-- Logo mark recreado en SVG -->
+      <svg class="logo-grande" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Arco principal del Guardián -->
+        <path d="M 40 160 A 80 80 0 1 1 185 130" stroke="#EAE3D6" stroke-width="14" stroke-linecap="round" fill="none"/>
+        <!-- Hoja/rizoma arriba izquierda -->
+        <path d="M 60 72 Q 50 55 70 50 Q 78 58 68 72" stroke="#EAE3D6" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <!-- Punto ojo derecho -->
+        <circle cx="155" cy="68" r="8" stroke="#EAE3D6" stroke-width="8" fill="none"/>
+        <!-- Pupila -->
+        <circle cx="155" cy="68" r="3" fill="#EAE3D6"/>
+        <!-- Cola del arco (boca) -->
+        <path d="M 185 130 Q 188 145 180 155" stroke="#EAE3D6" stroke-width="14" stroke-linecap="round" fill="none"/>
+      </svg>
+      <p class="hero-tagline-right">Etapa I · Macetas de Autor</p>
+    </div>
+  </div>
+</section>
+
+<!-- BANDA FILOSÓFICA -->
+<div class="banda">
+  <div class="banda-inner">
+    <span class="banda-item">Voluntad</span><span class="banda-dot">·</span>
+    <span class="banda-item">Wille</span><span class="banda-dot">·</span>
+    <span class="banda-item">意志</span><span class="banda-dot">·</span>
+    <span class="banda-item">Voluntad</span><span class="banda-dot">·</span>
+    <span class="banda-item">Will</span><span class="banda-dot">·</span>
+    <span class="banda-item">Volonté</span><span class="banda-dot">·</span>
+    <span class="banda-item">Voluntad</span><span class="banda-dot">·</span>
+    <span class="banda-item">Wille</span><span class="banda-dot">·</span>
+    <span class="banda-item">意志</span><span class="banda-dot">·</span>
+    <span class="banda-item">Voluntad</span><span class="banda-dot">·</span>
+    <span class="banda-item">Will</span><span class="banda-dot">·</span>
+    <span class="banda-item">Volonté</span><span class="banda-dot">·</span>
+  </div>
+</div>
+
+<!-- MANIFIESTO -->
+<section class="manifiesto">
+  <blockquote class="manifiesto-quote">
+    "Las palmeras odian el encharcamiento — <strong>la obscena avaricia del exceso</strong> — pero aman la humedad constante."
+  </blockquote>
+  <div class="manifiesto-texto">
+    <span class="etiqueta">Manifiesto</span>
+    <div class="manifiesto-cuerpo">
+      <p>En un mundo que produce para desechar, diseñamos para custodiar. Cada pieza es un acto de voluntad — soberanía técnica al servicio de la vida.</p>
+      <p>La planta no es un adorno. Es la mente de un guardián. Tú decides si merece prosperar.</p>
+      <p>El agua, el sol y la materia son finitos. Nuestros objetos lo saben. Por eso cada maceta lleva ingeniería que cuida — el Sistema Wick asegura la humedad exacta, sin exceso ni carencia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COLECCIÓN -->
+<section class="coleccion" id="coleccion">
+  <div class="sec-header">
+    <h2 class="sec-titulo">La <em>Colección</em></h2>
+    <div class="sec-meta">
+      Impresión 3D · Bambu Lab A1<br>
+      Diseño Industrial de Autor
+    </div>
+  </div>
+  <div class="grid-productos">
+
+    <div class="card-producto">
+      <div class="card-imagen">
+        <div class="card-badge">Línea I</div>
+        <img src="layu.png" alt="LAYÚ — Maceta esférica WILLE D Studio" />
+      </div>
+      <div class="card-cuerpo">
+        <div class="card-linea">Línea Barragán</div>
+        <h3 class="card-nombre">LAYÚ</h3>
+        <p class="card-desc">La tierra que todo lo contiene. Esférica, perfecta, eterna. Las grecas zapotecas en su mitad superior narran el ciclo sin fin entre el descanso y el renacer. La planta que emerge es la resurrección.</p>
+        <div class="card-footer">
+          <span class="card-precio">Consultar precio</span>
+          <a href="https://wa.me/525658692544?text=Hola,%20me%20interesa%20TEPANCALLI" class="card-pedir" target="_blank">Pedir →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-producto">
+      <div class="card-imagen">
+        <div class="card-badge">Línea II</div>
+        <img src="beedxe.png" alt="BEEDXE' — Maceta esférica verde WILLE D Studio" />
+      </div>
+      <div class="card-cuerpo">
+        <div class="card-linea">Línea Mitla</div>
+        <h3 class="card-nombre">BEEDXE'</h3>
+        <p class="card-desc">El ciclo eterno en forma de tierra. Las grecas de Lyobáa envuelven su ecuador — patrón que los zapotecos grabaron en piedra sin mortero, con precisión que aún asombra. Textura rugosa en su base: la huella del proceso, sin ocultarse.</p>
+        <div class="card-footer">
+          <span class="card-precio">Consultar precio</span>
+          <a href="https://wa.me/525658692544?text=Hola,%20me%20interesa%20YOO%20BEEDXE" class="card-pedir" target="_blank">Pedir →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-producto">
+      <div class="card-imagen">
+        <div class="card-badge">Línea III</div>
+        <img src="pitao.png" alt="PITAO — Maceta cilíndrica WILLE D Studio" />
+      </div>
+      <div class="card-cuerpo">
+        <div class="card-linea">Línea Guardianes</div>
+        <h3 class="card-nombre">PITAO</h3>
+        <p class="card-desc">La columna que no sostiene techo — sostiene vida. Inspirada en el Grupo de las Columnas de Mitla. Patrón vertical en relieve alto, textura rugosa en su banda inferior. Fuerza divina en formato doméstico.</p>
+        <div class="card-footer">
+          <span class="card-precio">Consultar precio</span>
+          <a href="https://wa.me/525658692544?text=Hola,%20me%20interesa%20una%20Entidad%20Guardiana" class="card-pedir" target="_blank">Pedir →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ARMADOR DE KIT -->
+<section class="armador" id="arma-tu-kit">
+  <div class="armador-inner">
+    <div class="armador-header">
+      <h2 class="armador-titulo">Arma tu <em>Kit</em></h2>
+      <p class="armador-sub">Elige tu maceta, elige tu planta, recibe todo listo para plantar.<br>Tan simple como armar un LEGO.</p>
+    </div>
+
+    <div class="kit-pasos">
+      <div class="kit-paso activo" id="paso1">
+        <div class="paso-num">01</div>
+        <div class="paso-titulo">Tu maceta</div>
+        <div class="opciones-kit">
+          <button class="opcion-kit seleccionada" onclick="seleccionar(this, 'maceta', 'TEPANCALLI — Línea Barragán')">
+            TEPANCALLI <div class="check"></div>
+          </button>
+          <button class="opcion-kit" onclick="seleccionar(this, 'maceta', 'YOO BEEDXE\' — Línea Mitla')">
+            YOO BEEDXE' <div class="check"></div>
+          </button>
+          <button class="opcion-kit" onclick="seleccionar(this, 'maceta', 'ENTIDAD — Guardián')">
+            ENTIDAD <div class="check"></div>
+          </button>
+        </div>
+      </div>
+
+      <div class="kit-paso" id="paso2">
+        <div class="paso-num">02</div>
+        <div class="paso-titulo">Tu planta</div>
+        <div class="opciones-kit">
+          <button class="opcion-kit" onclick="seleccionar(this, 'planta', 'Monstera deliciosa')">
+            Monstera <div class="check"></div>
+          </button>
+          <button class="opcion-kit" onclick="seleccionar(this, 'planta', 'Calathea')">
+            Calathea <div class="check"></div>
+          </button>
+          <button class="opcion-kit" onclick="seleccionar(this, 'planta', 'Palmera de interior')">
+            Palmera <div class="check"></div>
+          </button>
+          <button class="opcion-kit" onclick="seleccionar(this, 'planta', 'Cactus')">
+            Cactus <div class="check"></div>
+          </button>
+          <button class="opcion-kit" onclick="seleccionar(this, 'planta', 'Árbol de Jade')">
+            Árbol de Jade <div class="check"></div>
+          </button>
+        </div>
+      </div>
+
+      <div class="kit-paso" id="paso3">
+        <div class="paso-num">03</div>
+        <div class="paso-titulo">Extras</div>
+        <div class="opciones-kit">
+          <button class="opcion-kit" onclick="toggleExtra(this, 'Kit de sustratos (50/30/20)')">
+            Kit de Sustratos <div class="check"></div>
+          </button>
+          <button class="opcion-kit" onclick="toggleExtra(this, 'Fertilizante MAP')">
+            Fertilizante MAP <div class="check"></div>
+          </button>
+          <button class="opcion-kit" onclick="toggleExtra(this, 'Fertilizante Triple 20')">
+            Triple 20 <div class="check"></div>
+          </button>
+          <button class="opcion-kit" onclick="toggleExtra(this, 'Tutor para planta')">
+            Tutor <div class="check"></div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-resumen">
+      <div class="resumen-texto">
+        <strong id="resumen-nombre">TEPANCALLI — Línea Barragán</strong>
+        <span id="resumen-detalles">Selecciona tu planta y extras para completar tu kit</span>
+      </div>
+      <div class="resumen-precio">Kit personalizado</div>
+      <a id="btn-pedir-kit" href="https://wa.me/525658692544?text=Hola,%20quiero%20armar%20un%20kit:%20TEPANCALLI" class="btn-kit" target="_blank">
+        Pedir este Kit →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SISTEMA WICK -->
+<section class="sistema" id="sistema">
+  <div class="sistema-inner">
+    <div>
+      <div class="formula-grid">
+        <div class="formula-item">
+          <span class="formula-pct">50%</span>
+          <span class="formula-nombre">Coco</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-pct">30%</span>
+          <span class="formula-nombre">Perlita</span>
+        </div>
+        <div class="formula-item">
+          <span class="formula-pct">20%</span>
+          <span class="formula-nombre">Humus</span>
+        </div>
+      </div>
+      <div class="formula-nota">No es tierra. Es arquitectura para raíces.</div>
+    </div>
+
+    <div>
+      <span class="etiqueta" style="display:block; margin-bottom: 24px;">Ingeniería de Vida</span>
+      <h2 class="sec-titulo" style="margin-bottom: 40px;">Sistema <em>Wick</em></h2>
+      <div class="sistema-pasos">
+        <div class="sistema-paso">
+          <div class="paso-ico">1</div>
+          <div class="paso-info">
+            <h4>Autorriego por capilaridad</h4>
+            <p>Un cordón de algodón lleva la humedad exacta a la raíz. Sin exceso. Sin carencia. Como debe ser.</p>
+          </div>
+        </div>
+        <div class="sistema-paso">
+          <div class="paso-ico">2</div>
+          <div class="paso-info">
+            <h4>Tolerancia de 0.2mm</h4>
+            <p>Ensambles de precisión. El contenedor interior y la maceta encajan con exactitud milimétrica.</p>
+          </div>
+        </div>
+        <div class="sistema-paso">
+          <div class="paso-ico">3</div>
+          <div class="paso-info">
+            <h4>Kit incluido — listo para plantar</h4>
+            <p>Tres sobres de sustrato etiquetados. Mezcla, planta, disfruta. Diseñado como un LEGO.</p>
+          </div>
+        </div>
+        <div class="sistema-paso">
+          <div class="paso-ico">4</div>
+          <div class="paso-info">
+            <h4>Diseñado para la finitud</h4>
+            <p>El agua no es infinita. Este sistema minimiza el desperdicio y maximiza la vida de tu planta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANTAS -->
+<section class="plantas" id="plantas">
+  <div class="sec-header">
+    <h2 class="sec-titulo">Plantas <em>disponibles</em></h2>
+    <div class="sec-meta">
+      Interior · Sombra indirecta<br>
+      CDMX · Metepec · Envío a domicilio
+    </div>
+  </div>
+  <div class="plantas-grid">
+    <div class="planta-card">
+      <div class="planta-nombre">Monstera</div>
+      <div class="planta-cientifico">Monstera deliciosa</div>
+      <div class="planta-tags"><span class="tag">Interior</span><span class="tag">Tutor</span><span class="tag">Dramática</span></div>
+    </div>
+    <div class="planta-card">
+      <div class="planta-nombre">Calathea</div>
+      <div class="planta-cientifico">Calathea spp.</div>
+      <div class="planta-tags"><span class="tag">Interior</span><span class="tag wick">Wick ✓</span><span class="tag">Patrones</span></div>
+    </div>
+    <div class="planta-card">
+      <div class="planta-nombre">Dracaena</div>
+      <div class="planta-cientifico">Dracaena marginata</div>
+      <div class="planta-tags"><span class="tag">Interior</span><span class="tag">Guardián</span></div>
+    </div>
+    <div class="planta-card">
+      <div class="planta-nombre">Palmera</div>
+      <div class="planta-cientifico">Chamaedorea elegans</div>
+      <div class="planta-tags"><span class="tag">Interior</span><span class="tag wick">Wick ✓</span></div>
+    </div>
+    <div class="planta-card">
+      <div class="planta-nombre">Árbol de Jade</div>
+      <div class="planta-cientifico">Crassula ovata</div>
+      <div class="planta-tags"><span class="tag">Interior</span><span class="tag">Suculenta</span><span class="tag">Bonsái</span></div>
+    </div>
+    <div class="planta-card">
+      <div class="planta-nombre">Cactus</div>
+      <div class="planta-cientifico">Cactaceae spp.</div>
+      <div class="planta-tags"><span class="tag">Interior</span><span class="tag">Austero</span></div>
+    </div>
+    <div class="planta-card">
+      <div class="planta-nombre">Costilla de Adán</div>
+      <div class="planta-cientifico">Monstera adansonii</div>
+      <div class="planta-tags"><span class="tag">Interior</span><span class="tag wick">Wick ✓</span><span class="tag">Tutor</span></div>
+    </div>
+    <div class="planta-card">
+      <div class="planta-nombre">Bambú</div>
+      <div class="planta-cientifico">Dracaena sanderiana</div>
+      <div class="planta-tags"><span class="tag">Interior</span><span class="tag">Zen</span><span class="tag">Vertical</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="contacto-inner">
+    <div>
+      <h2 class="contacto-titulo">
+        Adopta un<br>
+        <em>guardián.</em>
+      </h2>
+      <p class="contacto-bajada">
+        Cada pieza es de autor y edición limitada. Escríbenos para elegir tu maceta, tu planta y recibir tu kit completo en casa — CDMX y Metepec.
+      </p>
+    </div>
+    <div class="contacto-items">
+      <div class="contacto-item">
+        <span class="c-label">WhatsApp Business</span>
+        <a href="https://wa.me/525658692544" class="c-valor" target="_blank">+52 56 5869 2544</a>
+        <p class="c-nota">Pedidos, dudas y entregas personales.</p>
+        <a href="https://wa.me/525658692544?text=Hola%20WILLE%20D%20Studio,%20me%20interesa%20una%20pieza" class="btn-wa" target="_blank">
+          Escribir ahora →
+        </a>
+      </div>
+      <div class="contacto-item">
+        <span class="c-label">Correo</span>
+        <a href="mailto:willedstudio@gmail.com" class="c-valor">willedstudio@gmail.com</a>
+      </div>
+      <div class="contacto-item">
+        <span class="c-label">También en</span>
+        <span class="c-valor" style="cursor:default;">Mercado Libre · Amazon</span>
+        <p class="c-nota">Próximamente disponible en plataformas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-marca">
+    <div class="footer-wordmark">WILLE <span>D.</span> Studio</div>
+    <div class="footer-sub">Diseño Industrial de Autor · México</div>
+  </div>
+  <div class="footer-frase">
+    "El objeto técnico como refugio de voluntad.<br>
+    Diseñamos para la conservación, no el consumo."
+  </div>
+  <div class="footer-copy">© 2025 WILLE D. Studio<br>Todos los derechos reservados</div>
+</footer>
+
+<script>
+  // Kit builder
+  const estado = { maceta: 'TEPANCALLI — Línea Barragán', planta: null, extras: [] };
+
+  function seleccionar(btn, tipo, valor) {
+    const grupo = btn.closest('.opciones-kit');
+    grupo.querySelectorAll('.opcion-kit').forEach(b => b.classList.remove('seleccionada'));
+    btn.classList.add('seleccionada');
+    estado[tipo] = valor;
+    actualizar();
+  }
+
+  function toggleExtra(btn, valor) {
+    btn.classList.toggle('seleccionada');
+    const idx = estado.extras.indexOf(valor);
+    if (idx > -1) estado.extras.splice(idx, 1);
+    else estado.extras.push(valor);
+    actualizar();
+  }
+
+  function actualizar() {
+    const nombre = document.getElementById('resumen-nombre');
+    const detalles = document.getElementById('resumen-detalles');
+    const btnPedir = document.getElementById('btn-pedir-kit');
+
+    nombre.textContent = estado.maceta || 'Selecciona una maceta';
+
+    let det = [];
+    if (estado.planta) det.push(estado.planta);
+    if (estado.extras.length) det.push(estado.extras.join(', '));
+    detalles.textContent = det.length ? det.join(' · ') : 'Selecciona tu planta y extras';
+
+    const msg = `Hola WILLE D Studio, quiero armar un kit:\nMaceta: ${estado.maceta || 'sin elegir'}\nPlanta: ${estado.planta || 'sin elegir'}\nExtras: ${estado.extras.join(', ') || 'ninguno'}`;
+    btnPedir.href = `https://wa.me/525658692544?text=${encodeURIComponent(msg)}`;
+  }
+
+  // Scroll suave para nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // Animación de entrada
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.card-producto, .planta-card, .sistema-paso, .contacto-item, .formula-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
